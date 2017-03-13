@@ -20,6 +20,16 @@ import (
 //const MemMaxSize = (1 << 20) * 10
 const MemMaxSize = 10
 
+type Email struct {
+    From        string
+    To          string
+    Subject     string
+    Content     string
+    ContentPath string
+    Type        string
+    Attachments string
+}
+
 func main() {
     var x = &Email{From: "kanauto@163.com", To: "1002204797@qq.com",
         Subject: "Test", Content: "Hello world", Type: "plain",Attachments:"main.go"}
@@ -128,15 +138,6 @@ func Attach(w *multipart.Writer, filename string) (err error) {
     return base64Wrap(mw, File)
 }
 
-type Email struct {
-    From        string
-    To          string
-    Subject     string
-    Content     string
-    ContentPath string
-    Type        string
-    Attachments string
-}
 //返回基础的头信息
 func (e *Email) Headers() (textproto.MIMEHeader, error) {
     res := make(textproto.MIMEHeader)
