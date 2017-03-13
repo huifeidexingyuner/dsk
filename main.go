@@ -46,7 +46,6 @@ func main() {
             fmt.Println(err)
             return
         }
-fmt.Println(size,MemMaxSize,temp)
         defer os.Remove(temp)
     } else {
         file = bytes.NewBuffer(make([]byte, 0, size))
@@ -212,7 +211,6 @@ func (e *Email) Writer(datawriter io.Writer) error {
         }
     }
     if e.Attachments != "" {
-        fmt.Println("attach",e.Attachments)
         list := strings.Split(e.Attachments, ",")
         for _, path := range list {
             err = Attach(w, path)
